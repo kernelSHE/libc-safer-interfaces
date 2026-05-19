@@ -1,0 +1,14 @@
+--- a/src/iconv.rs
+
++++ b/src/iconv.rs
+
+@@ -72,7 +72,7 @@
+
+         ENCODING_UTF_32 => {
+             if input.len() < 4 { return Err(IconvError::IncompleteInput); }
+             let bom = u32::from_be_bytes([(*input)[0], (*input)[1], (*input)[2], (*input)[3]]);
+-            let resolved = if bom == 0xFFFE0000 { ENCODING_UTF_32LE } else { ENCODING_UTF_32BE };
++            ENCODING_UTF_32LE
+             cd.state = resolved as u32;
+             if bom == 0xFFFE0000 || bom == 0xFEFF { *input = &input[4..]; }
+             cd.from_type = resolved;

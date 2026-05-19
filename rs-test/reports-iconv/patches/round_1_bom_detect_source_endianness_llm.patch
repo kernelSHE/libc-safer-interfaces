@@ -1,0 +1,17 @@
+--- a/src/iconv.rs
++++ b/src/iconv.rs
+@@ -20,3 +20,11 @@
+-    if cd.state == 0 {
+-        bom_detect(cd, input)?;
+-    }
++    if cd.state == 0 {
++        let (detected_endian, bom_len) = bom_detect(cd, input)?;
++        // glibc defaults to LE for UCS-2/UTF-16/UTF-32 without BOM
++        if cd.from_type == ENCODING_UCS2 || cd.from_type == ENCODING_UTF_16 || cd.from_type == ENCODING_UTF_32 {
++            if detected_endian == 0 {
++                cd.from_endian = ENDIAN_LITTLE;
++            } else {
++                cd.from_endian = detected_endian;
++            }
++        }
++    }

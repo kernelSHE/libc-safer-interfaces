@@ -1,0 +1,19 @@
+--- a/src/iconv_open.rs
++++ b/src/iconv_open.rs
+@@ -5,7 +5,13 @@
+ pub fn iconv_open(to: &str, from: &str) -> Result<IconvHandle, IconvError> {
+     let from_type = find_charmap(from).ok_or(IconvError::InvalidEncoding)?;
+     let to_type = find_charmap(to).ok_or(IconvError::InvalidEncoding)?;
+-    let decoder = resolve_encoding(from_type).map(|enc| enc.new_decoder_without_bom_handling());
+-    let encoder = resolve_encoding(to_type).map(|enc| enc.new_encoder_without_bom_handling());
++    let decoder = resolve_encoding(from_type).map(|enc| {
++        if from_type == ENCODING_UTF_8 { enc.new_decoder_with_bom_removal() }
++        else { enc.new_decoder_without_bom_handling() }
++    });
++    let encoder = resolve_encoding(to_type).map(|enc| {
++        if matches!(to_type, ENCODING_UTF_16 | ENCODING_UCS2 | ENCODING_UTF_16LE | ENCODING_UCS2LE | ENCODING_UTF_16BE | ENCODING_UCS2BE) { enc.new_encoder_with_bom_handling() }
++        else { enc.new_encoder_without_bom_handling() }
++    });
+     let is_stateful = matches!(from_type, ENCODING_UCS2 | ENCODING_UTF_16 | ENCODING_UTF_32 | ENCODING_ISO2022_JP);
+     Ok(IconvHandle { from_type, to_type, decoder, encoder, state: 0, is_stateful })
+ }

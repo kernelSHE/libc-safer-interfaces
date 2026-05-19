@@ -1,0 +1,14 @@
+--- a/src/types.rs
++++ b/src/types.rs
+@@ -5,6 +5,8 @@ use std::sync::RwLock;
+ #[cfg(feature = "use_std")]
+ use std::collections::HashMap;
+ 
++pub type IconvHandle = *mut libc::c_void;
++
+ #[cfg(feature = "use_std")]
+ pub struct IconvState {
+     pub conversions: HashMap<String, *mut libc::c_void>,
+```
+
+Wait, I need to see more context. Let me provide a proper fix based on the pattern - the issue is likely that `IconvHandle` needs to be a pointer type and the handle needs to be allocated on the heap. Let me see the full structure definition.

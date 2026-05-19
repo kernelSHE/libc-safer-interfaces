@@ -1,0 +1,32 @@
+--- a/src/iconv.rs
++++ b/src/iconv.rs
+@@ -6,18 +6,25 @@
+ pub fn iconv(
+     cd: &mut IconvHandle,
+     input: &mut &[u8],
+     output: &mut &mut [u8],
+ ) -> Result<usize, IconvError> {
+     let mut replacements = 0usize;
+     if input.is_empty() {
+         return Ok(0);
+     }
+ 
+     if cd.state == 0 {
+         bom_detect(cd, input)?;
+     }
+ 
+-    // Path 1: Both from/to use encoding_rs → direct streaming transcode
+-    if cd.decoder.is_some() && cd.encoder.is_some() {
+-        return transcode_both_rs(cd, input, output);
+-    }
++    // Path 1: Both from/to use encoding_rs → direct streaming transcode
++    if cd.decoder.is_some() && cd.encoder.is_some() {
++        let result = transcode_both_rs(cd, input, output);
++        // encoding_rs may add a UTF-16 BOM that glibc iconv doesn't output
++        if output.len() >= 2 && output[0] == 0xFE && output[1] == 0xFF {
++            let len = output.len() - 2;
++            output.copy_within(2.., 0);
++            *output = &mut output[..len];
++        }
++        return result;
++    }

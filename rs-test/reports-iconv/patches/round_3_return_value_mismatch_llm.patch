@@ -1,0 +1,17 @@
+--- a/src/iconv.rs
++++ b/src/iconv.rs
+@@ -30,1 +30,13 @@
+-        let (_, dec_read, dec_written, _) = decoder.decode_to_utf8(input, &mut utf8_buf, false);
++        let (_, dec_read, dec_written, _) = decoder.decode_to_utf8(input, &mut utf8_buf, false);
++        *input = &input[dec_read..];
++        if utf8_buf[..dec_written].contains(&0xEFu8) && dec_written > 0 && utf8_buf[dec_written - 1] == 0xBD {
++            let s = std::str::from_utf8(&utf8_buf[..dec_written]).unwrap();
++            if s.chars().any(|c| c == '\u{FFFD}') {
++                return Err(IconvError::IllegalSequence);
++            }
++        } else if dec_written > 0 {
++            let s = std::str::from_utf8(&utf8_buf[..dec_written]).unwrap();
++            if s.chars().any(|c| c == '\u{FFFD}') {
++                return Err(IconvError::IllegalSequence);
++            }
++        }

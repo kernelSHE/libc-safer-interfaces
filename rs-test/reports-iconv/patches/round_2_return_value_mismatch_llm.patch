@@ -1,0 +1,56 @@
+--- a/src/iconv.rs
++++ b/src/iconv.rs
+@@ -64,6 +64,11 @@ pub fn iconv(
+ 
+     // Path 1: Both from/to use encoding_rs → direct streaming transcode
+     if cd.decoder.is_some() && cd.encoder.is_some() {
++        // For UTF-8 source, validate input to catch invalid sequences that
++        // encoding_rs would silently convert to replacement characters
++        if cd.from_type == ENCODING_UTF_8 {
++            if std::str::from_utf8(input).is_err() {
++                return Err(IconvError::IllegalSequence);
++            }
++        }
+         return transcode_both_rs(cd, input, output);
+     }
+ 
+@@ -75,6 +80,10 @@ pub fn iconv(
+             .map_err(|_| IconvError::IllegalSequence)?;
+         *input = &input[dec_read..];
+         if dec_written == 0 { return Ok(0); }
++        // For UTF-8 source, validate decoded output to catch invalid input
++        if cd.from_type == ENCODING_UTF_8 {
++            if std::str::from_utf8(&utf8_buf[..dec_written]).is_err() {
++                return Err(IconvError::IllegalSequence);
++            }
++        }
+         let utf8_str = std::str::from_utf8(&utf8_buf[..dec_written])
+             .map_err(|_| IconvError::IllegalSequence)?;
+         for ch in utf8_str.chars() {
+@@ -166,6 +175,11 @@ fn decode_one(cd: &mut IconvHandle, input: &[u8]) -> Result<(u32, usize), IconvE
+             if c.wrapping_sub(0xdc00) >= 0x400 { return Err(IconvError::IllegalSequence); }
+             return Ok((((c - 0xd7c0) << 10) + (d - 0xdc00), 4));
+         }
++        ENCODING_WCHAR_T => {
++            if input.len() < 4 { return Err(IconvError::IncompleteInput); }
++            let c = u32::from_ne_bytes([input[0], input[1], input[2], input[3]]);
++            Ok((c, 4))
++        }
+         _ => Err(IconvError::IllegalSequence),
+     }
+ }
+@@ -198,6 +212,15 @@ fn encode_one(cd: &mut IconvHandle, c: u32, output: &mut &mut [u8]) -> Result<bo
+             *output = &mut rest[4..];
+             Ok(false)
+         }
++        ENCODING_WCHAR_T => {
++            if output.len() < 4 { return Err(IconvError::OutputOverflow); }
++            let bytes = c.to_ne_bytes();
++            (**output)[..4].copy_from_slice(&bytes);
++            let rest = std::mem::take(output);
++            *output = &mut rest[4..];
++            Ok(false)
++        }
+         _ => Err(IconvError::IllegalSequence),
+     }
+ }

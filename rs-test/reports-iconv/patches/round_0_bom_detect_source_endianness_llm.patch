@@ -1,0 +1,16 @@
+--- a/src/iconv.rs
++++ b/src/iconv.rs
+@@ -16,5 +16,12 @@
+     if cd.from_type == ENCODING_UTF_8 && std::str::from_utf8(input).is_err() {
+         return Err(IconvError::IllegalSequence);
+     }
+ 
+-    if cd.state == 0 {
++    if cd.state == 0 {
++        // Default to little-endian for UTF-16/UCS-2/UTF-32 without BOM (glibc behavior)
++        if matches!(cd.from_type, ENCODING_UTF_16 | ENCODING_UCS2 | ENCODING_UTF_32) {
++            if let Some(decoder) = cd.decoder.as_mut() {
++                letBE = decoder.config_mut();
++                *leBE = true; // Force little-endian as default
++            }
++        }
