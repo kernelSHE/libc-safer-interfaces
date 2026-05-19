@@ -3192,6 +3192,18 @@ extern_ty! {
     pub enum fpos_t {} // FIXME(fuchsia): fill this out with a struct
 }
 
+// [c2rust:begin] Rust implementation for strxfrm
+pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t {
+    unsafe {
+        let l = strlen(ct);
+        if n > l && !s.is_null() && !ct.is_null() {
+            std::ptr::copy_nonoverlapping(ct as *const u8, s as *mut u8, l + 1);
+        }
+        l
+    }
+}
+// [c2rust:end] Rust implementation for strxfrm
+
 extern "C" {
     pub fn isalnum(c: c_int) -> c_int;
     pub fn isalpha(c: c_int) -> c_int;
@@ -3273,7 +3285,7 @@ extern "C" {
     pub fn strnlen(cs: *const c_char, maxlen: size_t) -> size_t;
     pub fn strerror(n: c_int) -> *mut c_char;
     pub fn strtok(s: *mut c_char, t: *const c_char) -> *mut c_char;
-    pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t;
+    // pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t;
     pub fn wcslen(buf: *const wchar_t) -> size_t;
     pub fn wcstombs(dest: *mut c_char, src: *const wchar_t, n: size_t) -> size_t;
 

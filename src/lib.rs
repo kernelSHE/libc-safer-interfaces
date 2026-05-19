@@ -29,7 +29,7 @@
 #![cfg_attr(feature = "rustc-dep-of-std", allow(internal_features))]
 // Some targets don't need `link_cfg` and emit a warning.
 #![cfg_attr(feature = "rustc-dep-of-std", allow(unused_features))]
-#![cfg_attr(not(feature = "rustc-dep-of-std"), no_std)]
+#![cfg_attr(not(any(feature = "std", feature = "rustc-dep-of-std")), no_std)]
 #![cfg_attr(feature = "rustc-dep-of-std", no_core)]
 
 #[macro_use]
