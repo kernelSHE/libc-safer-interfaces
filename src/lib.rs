@@ -37,6 +37,11 @@ mod macros;
 mod new;
 pub mod strftime;
 pub mod strxfrm;
+//iconv
+pub mod iconv;
+pub use iconv::iconv;
+pub use iconv::iconv_open;
+pub use iconv::iconv_close;
 
 cfg_if! {
     if #[cfg(feature = "rustc-dep-of-std")] {

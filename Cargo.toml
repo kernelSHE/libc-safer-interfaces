@@ -161,11 +161,11 @@ cargo-args = ["-Zbuild-std=core"]
 
 [dependencies]
 rustc-std-workspace-core = { version = "1.0.1", optional = true }
-encoding_rs = { version = "0.8", optional = true }
+encoding_rs = { version = "0.8", default-features = false }
 
 [features]
 default = ["std"]
-std = ["dep:encoding_rs"]
+std = []
 rustc-dep-of-std = ["rustc-std-workspace-core"]
 extra_traits = []
 
