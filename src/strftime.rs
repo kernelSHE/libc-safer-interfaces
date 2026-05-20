@@ -1,20 +1,20 @@
-use core::ffi::c_void;
+use core::ffi::{c_char, c_int, c_long, c_void};
 use core::ptr;
 
 #[repr(C)]
 #[derive(Debug)]
 pub struct StrftimeTm {
-    pub tm_sec: i32,
-    pub tm_min: i32,
-    pub tm_hour: i32,
-    pub tm_mday: i32,
-    pub tm_mon: i32,
-    pub tm_year: i32,
-    pub tm_wday: i32,
-    pub tm_yday: i32,
-    pub tm_isdst: i32,
-    pub __tm_gmtoff: i64,
-    pub __tm_zone: *const u8,
+    pub tm_sec: c_int,
+    pub tm_min: c_int,
+    pub tm_hour: c_int,
+    pub tm_mday: c_int,
+    pub tm_mon: c_int,
+    pub tm_year: c_int,
+    pub tm_wday: c_int,
+    pub tm_yday: c_int,
+    pub tm_isdst: c_int,
+    pub tm_gmtoff: c_long,
+    pub tm_zone: *const c_char,
 }
 
 const ABDAY_1: u32 = 0x20000;
@@ -63,13 +63,13 @@ unsafe fn my_strlen(s: *const u8) -> usize {
     len
 }
 
-fn is_leap(y: i32) -> bool {
-    let y = if y > i32::MAX - 1900 { y - 2000 } else { y };
+fn is_leap(y: c_int) -> bool {
+    let y = if y > c_int::MAX - 1900 { y - 2000 } else { y };
     let y = y + 1900;
     (y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0))
 }
 
-unsafe fn week_num(t: *const StrftimeTm) -> i32 {
+unsafe fn week_num(t: *const StrftimeTm) -> c_int {
     let yday = (*t).tm_yday;
     let wday = (*t).tm_wday;
     let mut val = (yday + 7 - (wday + 6) % 7) / 7;
@@ -91,9 +91,9 @@ unsafe fn week_num(t: *const StrftimeTm) -> i32 {
     val
 }
 
-fn year_to_secs(year: i64, is_leap_out: &mut i32) -> i64 {
+fn year_to_secs(year: i64, is_leap_out: &mut c_int) -> i64 {
     if (year as u64).wrapping_sub(2) <= 136 {
-        let y = year as i32;
+        let y = year as c_int;
         let leaps = (y - 68) >> 2;
         if (y - 68) & 3 == 0 {
             *is_leap_out = 1;
@@ -103,8 +103,8 @@ fn year_to_secs(year: i64, is_leap_out: &mut i32) -> i64 {
             31536000i64 * (y as i64 - 70) + 86400i64 * leaps as i64
         }
     } else {
-        let mut cycles = ((year - 100) / 400) as i32;
-        let mut rem = ((year - 100) % 400) as i32;
+        let mut cycles = ((year - 100) / 400) as c_int;
+        let mut rem = ((year - 100) % 400) as c_int;
         if rem < 0 {
             cycles -= 1;
             rem += 400;
@@ -137,7 +137,7 @@ fn year_to_secs(year: i64, is_leap_out: &mut i32) -> i64 {
     }
 }
 
-fn month_to_secs(month: i32, is_leap: i32) -> i64 {
+fn month_to_secs(month: c_int, is_leap: c_int) -> i64 {
     static SECS: [i64; 12] = [0, 31*86400, 59*86400, 90*86400, 120*86400, 151*86400, 181*86400, 212*86400, 243*86400, 273*86400, 304*86400, 334*86400];
     let mut t = SECS[month as usize];
     if is_leap != 0 && month >= 2 { t += 86400; }
@@ -163,7 +163,7 @@ unsafe fn tm_to_secs(t: *const StrftimeTm) -> i64 {
 }
 
 unsafe fn tm_to_tzname(t: *const StrftimeTm) -> *const u8 {
-    if !(*t).__tm_zone.is_null() { (*t).__tm_zone } else { b"UTC\0".as_ptr() }
+    if !(*t).tm_zone.is_null() { (*t).tm_zone as *const u8 } else { b"UTC\0".as_ptr() }
 }
 
 fn format_i64(buf: &mut [u8], val: i64) -> usize {
@@ -221,7 +221,7 @@ unsafe fn strftime_fmt_1(s: &mut [u8; 100], l: &mut usize, f: u8, tm: *const Str
         b'p' => { let p=nl_langinfo_l(if (*tm).tm_hour>=12{PM_STR}else{AM_STR},loc); *l=my_strlen(p); p }
         b'r' => { *l=strftime_l(s.as_mut_ptr(),100,nl_langinfo_l(T_FMT_AMPM,loc),tm,loc); if *l==0{return ptr::null();} s.as_ptr() }
         b'R' => { *l=strftime_l(s.as_mut_ptr(),100,b"%H:%M\0".as_ptr(),tm,loc); if *l==0{return ptr::null();} s.as_ptr() }
-        b's' => { *l=format_i64(s.as_mut_slice(),tm_to_secs(tm)-(*tm).__tm_gmtoff); s.as_ptr() }
+        b's' => { *l=format_i64(s.as_mut_slice(),tm_to_secs(tm)-(*tm).tm_gmtoff as i64); s.as_ptr() }
         b'S' => { *l=format_padded(s.as_mut_slice(),(*tm).tm_sec as i64,2,pad); s.as_ptr() }
         b't' => { *l=1; b"\t".as_ptr() }
         b'T' => { *l=strftime_l(s.as_mut_ptr(),100,b"%H:%M:%S\0".as_ptr(),tm,loc); if *l==0{return ptr::null();} s.as_ptr() }
@@ -234,7 +234,7 @@ unsafe fn strftime_fmt_1(s: &mut [u8; 100], l: &mut usize, f: u8, tm: *const Str
         b'X' => { *l=strftime_l(s.as_mut_ptr(),100,nl_langinfo_l(T_FMT,loc),tm,loc); if *l==0{return ptr::null();} s.as_ptr() }
         b'y' => { let mut v=((*tm).tm_year as i64+1900)%100; if v<0{v=-v} *l=format_padded(s.as_mut_slice(),v,2,pad); s.as_ptr() }
         b'Y' => { let v=(*tm).tm_year as i64+1900; if v>=10000{s[0]=b'+';let n=format_i64(&mut s[1..],v);*l=1+n;return s.as_ptr();} *l=format_padded(s.as_mut_slice(),v,4,pad); s.as_ptr() }
-        b'z' => { if (*tm).tm_isdst<0{*l=0;return b"\0".as_ptr();} let off=(*tm).__tm_gmtoff; let v=off/3600*100+off%3600/60; s[0]=if v>=0{b'+'}else{b'-'}; *l=1+format_padded(&mut s[1..],v.abs(),4,b'0'); s.as_ptr() }
+        b'z' => { if (*tm).tm_isdst<0{*l=0;return b"\0".as_ptr();} let off=(*tm).tm_gmtoff as i64; let v=off/3600*100+off%3600/60; s[0]=if v>=0{b'+'}else{b'-'}; *l=1+format_padded(&mut s[1..],v.abs(),4,b'0'); s.as_ptr() }
         b'Z' => { if (*tm).tm_isdst<0{*l=0;return b"\0".as_ptr();} let p=tm_to_tzname(tm); *l=my_strlen(p); p }
         b'%' => { *l=1; b"%".as_ptr() }
         _ => ptr::null(),
@@ -279,6 +279,12 @@ unsafe fn strftime_l(s: *mut u8, n: usize, mut f: *const u8, tm: *const Strftime
     0
 }
 
-pub unsafe fn strftime(s: *mut u8, n: usize, f: *const u8, tm: *const StrftimeTm) -> usize {
-    strftime_l(s, n, f, tm, ptr::null())
+pub unsafe fn strftime(s: *mut c_char, max: usize, format: *const c_char, tm: *const crate::tm) -> usize {
+    strftime_l(
+        s as *mut u8,
+        max as usize,
+        format as *const u8,
+        tm as *const StrftimeTm,
+        ptr::null(),
+    )
 }

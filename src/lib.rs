@@ -36,7 +36,9 @@
 mod macros;
 mod new;
 pub mod strftime;
+pub use strftime::strftime;
 pub mod strxfrm;
+pub use strxfrm::strxfrm;
 //iconv
 pub mod iconv;
 pub use iconv::iconv;
