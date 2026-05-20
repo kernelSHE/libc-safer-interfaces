@@ -77,7 +77,7 @@ pub type vm_prot_t = c_int;
 pub type ledger_t = crate::mach_port_t;
 pub type ledger_array_t = *mut crate::ledger_t;
 
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 // mach/host_info.h
 pub type host_cpu_load_info_t = *mut host_cpu_load_info;

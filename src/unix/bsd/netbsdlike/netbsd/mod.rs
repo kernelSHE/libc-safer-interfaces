@@ -34,7 +34,7 @@ pub type Elf64_Sxword = i64;
 pub type Elf64_Word = u32;
 pub type Elf64_Xword = u64;
 
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 c_enum! {
     pub enum fae_action {

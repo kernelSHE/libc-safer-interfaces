@@ -30,7 +30,7 @@ cfg_if! {
     }
 }
 
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 cfg_if! {
     if #[cfg(not(target_env = "gnu"))] {

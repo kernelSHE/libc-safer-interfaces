@@ -36,7 +36,7 @@ pub type Elf64_Sxword = i64;
 pub type Elf64_Word = u32;
 pub type Elf64_Xword = u64;
 
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 // It's an alias over "struct __kvm_t". However, its fields aren't supposed to be used directly,
 // making the type definition system dependent. Better not bind it exactly.

@@ -60,7 +60,7 @@ pub type pthread_mutexattr_t = *mut c_void;
 pub type pthread_attr_t = *mut c_void;
 pub type pthread_barrierattr_t = *mut c_void;
 pub type posix_spawn_file_actions_t = *mut c_char;
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 c_enum! {
     #[repr(u32)]

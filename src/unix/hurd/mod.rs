@@ -223,7 +223,7 @@ pub type regoff_t = c_int;
 
 pub type nl_item = c_int;
 
-pub type iconv_t = *mut c_void;
+//pub type iconv_t = *mut c_void;
 
 extern_ty! {
     pub enum fpos64_t {} // FIXME(hurd): fill this out with a struct
