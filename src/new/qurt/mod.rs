@@ -301,7 +301,7 @@ extern "C" {
     pub fn strcmp(s1: *const c_char, s2: *const c_char) -> c_int;
     pub fn strncmp(s1: *const c_char, s2: *const c_char, n: size_t) -> c_int;
     pub fn strcoll(s1: *const c_char, s2: *const c_char) -> c_int;
-    pub fn strxfrm(dest: *mut c_char, src: *const c_char, n: size_t) -> size_t;
+    //pub fn strxfrm(dest: *mut c_char, src: *const c_char, n: size_t) -> size_t;
     pub fn strchr(s: *const c_char, c: c_int) -> *mut c_char;
     pub fn strrchr(s: *const c_char, c: c_int) -> *mut c_char;
     pub fn strspn(s: *const c_char, accept: *const c_char) -> size_t;
