@@ -3192,17 +3192,6 @@ extern_ty! {
     pub enum fpos_t {} // FIXME(fuchsia): fill this out with a struct
 }
 
-// [c2rust:begin] Rust implementation for strxfrm
-pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t {
-    unsafe {
-        let l = strlen(ct);
-        if n > l && !s.is_null() && !ct.is_null() {
-            std::ptr::copy_nonoverlapping(ct as *const u8, s as *mut u8, l + 1);
-        }
-        l
-    }
-}
-// [c2rust:end] Rust implementation for strxfrm
 
 extern "C" {
     pub fn isalnum(c: c_int) -> c_int;

@@ -3972,12 +3972,12 @@ extern "C" {
     pub fn asctime_r(tm: *const crate::tm, buf: *mut c_char) -> *mut c_char;
     pub fn ctime_r(timep: *const time_t, buf: *mut c_char) -> *mut c_char;
 
-    pub fn strftime(
-        s: *mut c_char,
-        max: size_t,
-        format: *const c_char,
-        tm: *const crate::tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    s: *mut c_char,
+    //    max: size_t,
+    //    format: *const c_char,
+    //    tm: *const crate::tm,
+    //) -> size_t;
     pub fn strptime(s: *const c_char, format: *const c_char, tm: *mut crate::tm) -> *mut c_char;
 
     pub fn timer_create(

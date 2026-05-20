@@ -1166,12 +1166,12 @@ extern "C" {
     // time
     pub fn gettimeofday(tv: *mut timeval, tz: *mut c_void) -> c_int;
 
-    pub fn strftime(
-        restrict: *mut c_char,
-        sz: size_t,
-        _restrict: *const c_char,
-        __restrict: *const tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    restrict: *mut c_char,
+    //    sz: size_t,
+    //    _restrict: *const c_char,
+    //    __restrict: *const tm,
+    //) -> size_t;
 
     pub fn time(t: *mut time_t) -> time_t;
 
@@ -1197,7 +1197,7 @@ extern "C" {
 
     pub fn strcoll(l: *const c_char, r: *const c_char) -> c_int;
 
-    pub fn strxfrm(dest: *mut c_char, src: *const c_char, n: size_t) -> size_t;
+    //pub fn strxfrm(dest: *mut c_char, src: *const c_char, n: size_t) -> size_t;
 
     pub fn strtod(s: *const c_char, p: *mut *mut c_char) -> c_double;
 

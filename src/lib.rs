@@ -35,6 +35,8 @@
 #[macro_use]
 mod macros;
 mod new;
+pub mod strftime;
+pub mod strxfrm;
 
 cfg_if! {
     if #[cfg(feature = "rustc-dep-of-std")] {

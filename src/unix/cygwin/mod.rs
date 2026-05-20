@@ -1845,7 +1845,7 @@ extern "C" {
         timeout: *const timespec,
     ) -> c_int;
 
-    pub fn strftime(s: *mut c_char, max: size_t, format: *const c_char, tm: *const tm) -> size_t;
+    //pub fn strftime(s: *mut c_char, max: size_t, format: *const c_char, tm: *const tm) -> size_t;
 
     pub fn asctime_r(tm: *const tm, buf: *mut c_char) -> *mut c_char;
     pub fn ctime_r(timep: *const time_t, buf: *mut c_char) -> *mut c_char;

@@ -2050,12 +2050,13 @@ extern "C" {
 
     pub fn strchrnul(s: *const c_char, c: c_int) -> *mut c_char;
 
-    pub fn strftime(
-        s: *mut c_char,
-        max: size_t,
-        format: *const c_char,
-        tm: *const crate::tm,
-    ) -> size_t;
+    // [libc-native] strftime: replaced by crate::strftime::strftime
+    // pub fn strftime(
+    //     s: *mut c_char,
+    //     max: size_t,
+    //     format: *const c_char,
+    //     tm: *const crate::tm,
+    // ) -> size_t;
     pub fn strftime_l(
         s: *mut c_char,
         max: size_t,

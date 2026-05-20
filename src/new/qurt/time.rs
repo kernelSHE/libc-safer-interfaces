@@ -22,12 +22,12 @@ extern "C" {
     pub fn asctime_r(tm: *const tm, buf: *mut c_char) -> *mut c_char;
     pub fn ctime(timep: *const time_t) -> *mut c_char;
     pub fn ctime_r(timep: *const time_t, buf: *mut c_char) -> *mut c_char;
-    pub fn strftime(
-        s: *mut c_char,
-        maxsize: size_t,
-        format: *const c_char,
-        timeptr: *const tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    s: *mut c_char,
+    //    maxsize: size_t,
+    //    format: *const c_char,
+    //    timeptr: *const tm,
+    //) -> size_t;
     pub fn strptime(s: *const c_char, format: *const c_char, tm: *mut tm) -> *mut c_char;
     pub fn clock_gettime(clk_id: clockid_t, tp: *mut timespec) -> c_int;
     pub fn nanosleep(req: *const timespec, rem: *mut timespec) -> c_int;

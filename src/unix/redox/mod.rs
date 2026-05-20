@@ -1419,12 +1419,12 @@ extern "C" {
     // time.h
     pub fn gettimeofday(tp: *mut crate::timeval, tz: *mut crate::timezone) -> c_int;
     pub fn clock_gettime(clk_id: crate::clockid_t, tp: *mut crate::timespec) -> c_int;
-    pub fn strftime(
-        s: *mut c_char,
-        max: size_t,
-        format: *const c_char,
-        tm: *const crate::tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    s: *mut c_char,
+    //    max: size_t,
+    //    format: *const c_char,
+    //    tm: *const crate::tm,
+    //) -> size_t;
 
     // utmp.h
     pub fn login_tty(fd: c_int) -> c_int;

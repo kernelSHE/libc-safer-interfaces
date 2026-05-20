@@ -2940,12 +2940,12 @@ extern "C" {
     pub fn secure_getenv(name: *const c_char) -> *mut c_char;
 
     #[cfg_attr(target_os = "solaris", link_name = "__strftime_xpg7")]
-    pub fn strftime(
-        s: *mut c_char,
-        maxsize: size_t,
-        format: *const c_char,
-        timeptr: *const crate::tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    s: *mut c_char,
+    //    maxsize: size_t,
+    //    format: *const c_char,
+    //    timeptr: *const crate::tm,
+    //) -> size_t;
     pub fn strftime_l(
         s: *mut c_char,
         maxsize: size_t,

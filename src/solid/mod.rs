@@ -719,7 +719,7 @@ extern "C" {
     pub fn strtok(arg1: *mut c_char, arg2: *const c_char) -> *mut c_char;
     pub fn strtok_r(arg1: *mut c_char, arg2: *const c_char, arg3: *mut *mut c_char) -> *mut c_char;
     pub fn strerror_r(arg1: c_int, arg2: *mut c_char, arg3: size_t) -> c_int;
-    pub fn strxfrm(arg1: *mut c_char, arg2: *const c_char, arg3: size_t) -> size_t;
+    //pub fn strxfrm(arg1: *mut c_char, arg2: *const c_char, arg3: size_t) -> size_t;
     pub fn memccpy(
         arg1: *mut c_void,
         arg2: *const c_void,
@@ -781,12 +781,12 @@ extern "C" {
     pub fn localtime(arg1: *const time_t) -> *mut tm;
     pub fn time(arg1: *mut time_t) -> time_t;
     pub fn mktime(arg1: *mut tm) -> time_t;
-    pub fn strftime(
-        arg1: *mut c_char,
-        arg2: size_t,
-        arg3: *const c_char,
-        arg4: *const tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    arg1: *mut c_char,
+    //    arg2: size_t,
+    //   arg3: *const c_char,
+    //   arg4: *const tm,
+    //) -> size_t;
     pub fn utime(arg1: *const c_char, arg2: *mut time_t) -> c_int;
     pub fn asctime_r(arg1: *const tm, arg2: *mut c_char) -> *mut c_char;
     pub fn ctime_r(arg1: *const time_t, arg2: *mut c_char) -> *mut c_char;

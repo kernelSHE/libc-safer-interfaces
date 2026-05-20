@@ -3683,12 +3683,12 @@ extern "C" {
         locale: crate::locale_t,
     ) -> c_int;
     pub fn strerror_r(errnum: c_int, buf: *mut c_char, buflen: size_t) -> c_int;
-    pub fn strftime(
-        arg1: *mut c_char,
-        arg2: size_t,
-        arg3: *const c_char,
-        arg4: *const tm,
-    ) -> size_t;
+    //pub fn strftime(
+    //    arg1: *mut c_char,
+    //    arg2: size_t,
+    //    arg3: *const c_char,
+    //    arg4: *const tm,
+    //) -> size_t;
     pub fn strncasecmp_l(
         string1: *const c_char,
         string2: *const c_char,

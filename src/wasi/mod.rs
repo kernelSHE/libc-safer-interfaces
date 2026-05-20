@@ -712,7 +712,7 @@ extern "C" {
     pub fn time(a: *mut time_t) -> time_t;
     pub fn difftime(a: time_t, b: time_t) -> c_double;
     pub fn mktime(a: *mut tm) -> time_t;
-    pub fn strftime(a: *mut c_char, b: size_t, c: *const c_char, d: *const tm) -> size_t;
+    //pub fn strftime(a: *mut c_char, b: size_t, c: *const c_char, d: *const tm) -> size_t;
     pub fn gmtime(a: *const time_t) -> *mut tm;
     pub fn gmtime_r(a: *const time_t, b: *mut tm) -> *mut tm;
     pub fn localtime(a: *const time_t) -> *mut tm;
@@ -776,7 +776,7 @@ extern "C" {
     pub fn strnlen(cs: *const c_char, maxlen: size_t) -> size_t;
     pub fn strerror(n: c_int) -> *mut c_char;
     pub fn strtok(s: *mut c_char, t: *const c_char) -> *mut c_char;
-    pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t;
+    //pub fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t;
 
     pub fn memchr(cx: *const c_void, c: c_int, n: size_t) -> *mut c_void;
     pub fn memcmp(cx: *const c_void, ct: *const c_void, n: size_t) -> c_int;
