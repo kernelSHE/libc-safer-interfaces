@@ -49,6 +49,9 @@ pub use iconv::iconv_close;
 //unsetenv
 pub mod unsetenv;
 pub use unsetenv::unsetenv;
+//memcmp
+pub mod memcmp;
+pub use memcmp::memcmp;
 
 cfg_if! {
     if #[cfg(feature = "rustc-dep-of-std")] {

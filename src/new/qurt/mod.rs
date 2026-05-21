@@ -311,7 +311,7 @@ extern "C" {
     pub fn strtok(s: *mut c_char, delim: *const c_char) -> *mut c_char;
     pub fn strerror(errnum: c_int) -> *mut c_char;
     pub fn memchr(s: *const c_void, c: c_int, n: size_t) -> *mut c_void;
-    pub fn memcmp(s1: *const c_void, s2: *const c_void, n: size_t) -> c_int;
+    //pub fn memcmp(s1: *const c_void, s2: *const c_void, n: size_t) -> c_int;
     pub fn memcpy(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void;
     pub fn memmove(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void;
     pub fn memset(s: *mut c_void, c: c_int, n: size_t) -> *mut c_void;

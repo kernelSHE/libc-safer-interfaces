@@ -697,7 +697,7 @@ extern "C" {
 
     // string.h
     pub fn memchr(arg1: *const c_void, arg2: c_int, arg3: size_t) -> *mut c_void;
-    pub fn memcmp(arg1: *const c_void, arg2: *const c_void, arg3: size_t) -> c_int;
+    //pub fn memcmp(arg1: *const c_void, arg2: *const c_void, arg3: size_t) -> c_int;
     pub fn memcpy(arg1: *mut c_void, arg2: *const c_void, arg3: size_t) -> *mut c_void;
     pub fn memmove(arg1: *mut c_void, arg2: *const c_void, arg3: size_t) -> *mut c_void;
     pub fn memset(arg1: *mut c_void, arg2: c_int, arg3: size_t) -> *mut c_void;
