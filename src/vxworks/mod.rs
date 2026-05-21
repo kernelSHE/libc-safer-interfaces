@@ -2192,10 +2192,10 @@ extern "C" {
     ) -> c_int;
 
     // stdlib.h
-    pub fn unsetenv(
+    //pub fn unsetenv(
         // setenv.c
-        envVarName: *const c_char,
-    ) -> c_int;
+    //    envVarName: *const c_char,
+    //) -> c_int;
 
     // stdlib.h
     pub fn realpath(fileName: *const c_char, resolvedName: *mut c_char) -> *mut c_char;

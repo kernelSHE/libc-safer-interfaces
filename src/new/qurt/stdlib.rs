@@ -25,7 +25,7 @@ extern "C" {
     // Environment
     pub fn getenv(name: *const c_char) -> *mut c_char;
     pub fn setenv(name: *const c_char, value: *const c_char, overwrite: c_int) -> c_int;
-    pub fn unsetenv(name: *const c_char) -> c_int;
+    //pub fn unsetenv(name: *const c_char) -> c_int;
 
     // String/number conversion
     pub fn atoi(nptr: *const c_char) -> c_int;

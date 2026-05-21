@@ -669,7 +669,7 @@ extern "C" {
     pub fn read(fd: c_int, ptr: *mut c_void, size: size_t) -> ssize_t;
     pub fn realloc(ptr: *mut c_void, amt: size_t) -> *mut c_void;
     pub fn setenv(k: *const c_char, v: *const c_char, a: c_int) -> c_int;
-    pub fn unsetenv(k: *const c_char) -> c_int;
+    //pub fn unsetenv(k: *const c_char) -> c_int;
     pub fn clearenv() -> c_int;
     pub fn write(fd: c_int, ptr: *const c_void, size: size_t) -> ssize_t;
     pub static mut environ: *mut *mut c_char;

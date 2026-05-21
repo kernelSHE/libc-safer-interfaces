@@ -3479,7 +3479,7 @@ extern "C" {
     pub fn fsync(fd: c_int) -> c_int;
 
     pub fn setenv(name: *const c_char, val: *const c_char, overwrite: c_int) -> c_int;
-    pub fn unsetenv(name: *const c_char) -> c_int;
+    //pub fn unsetenv(name: *const c_char) -> c_int;
 
     pub fn symlink(path1: *const c_char, path2: *const c_char) -> c_int;
 

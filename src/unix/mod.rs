@@ -1250,7 +1250,7 @@ extern "C" {
         link_name = "unsetenv$UNIX2003"
     )]
     #[cfg_attr(target_os = "netbsd", link_name = "__unsetenv13")]
-    pub fn unsetenv(name: *const c_char) -> c_int;
+    //pub fn unsetenv(name: *const c_char) -> c_int;
 
     pub fn symlink(path1: *const c_char, path2: *const c_char) -> c_int;
 

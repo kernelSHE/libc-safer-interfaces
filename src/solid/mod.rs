@@ -585,7 +585,7 @@ extern "C" {
     pub fn at_quick_exit(arg1: Option<unsafe extern "C" fn()>) -> c_int;
     pub fn quick_exit(arg1: c_int);
     pub fn setenv(arg1: *const c_char, arg2: *const c_char, arg3: c_int) -> c_int;
-    pub fn unsetenv(arg1: *const c_char) -> c_int;
+    //pub fn unsetenv(arg1: *const c_char) -> c_int;
     pub fn humanize_number(
         arg1: *mut c_char,
         arg2: size_t,
