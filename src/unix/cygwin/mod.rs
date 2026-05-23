@@ -2352,12 +2352,12 @@ extern "C" {
         buflen: size_t,
         result: *mut *mut crate::group,
     ) -> c_int;
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn getgrnam(name: *const c_char) -> *mut crate::group;
     pub fn getgrnam_r(
         name: *const c_char,

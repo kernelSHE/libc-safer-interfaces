@@ -2336,16 +2336,16 @@ extern "C" {
 
     pub fn gettimeofday(tp: *mut crate::timeval, tz: *mut c_void) -> c_int;
     pub fn settimeofday(tp: *const crate::timeval, tz: *const c_void) -> c_int;
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
 
     pub fn stack_getbounds(sp: *mut crate::stack_t) -> c_int;
-    pub fn getgrouplist(
-        name: *const c_char,
-        basegid: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    name: *const c_char,
+    //    basegid: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn initgroups(name: *const c_char, basegid: crate::gid_t) -> c_int;
     pub fn setgroups(ngroups: c_int, ptr: *const crate::gid_t) -> c_int;
     pub fn ioctl(fildes: c_int, request: c_int, ...) -> c_int;

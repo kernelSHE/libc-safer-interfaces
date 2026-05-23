@@ -1502,7 +1502,7 @@ extern "C" {
     pub fn labs(i: c_long) -> c_long;
     pub fn rand() -> c_int;
     pub fn srand(seed: c_uint);
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
     pub fn ppoll(
         fds: *mut crate::pollfd,
@@ -1673,12 +1673,12 @@ extern "C" {
         buflen: size_t,
         result: *mut *mut crate::group,
     ) -> c_int;
-    pub fn getgrouplist(
-        user: *const c_char,
-        basegroup: crate::gid_t,
-        grouplist: *mut crate::gid_t,
-        groupcount: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //   user: *const c_char,
+    //    basegroup: crate::gid_t,
+    //    grouplist: *mut crate::gid_t,
+    //    groupcount: *mut c_int,
+    //) -> c_int;
     pub fn sigaltstack(ss: *const stack_t, oss: *mut stack_t) -> c_int;
     pub fn sigsuspend(mask: *const crate::sigset_t) -> c_int;
     pub fn sem_close(sem: *mut sem_t) -> c_int;

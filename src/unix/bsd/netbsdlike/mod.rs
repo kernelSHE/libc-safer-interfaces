@@ -739,12 +739,12 @@ extern "C" {
         sigmask: *const crate::sigset_t,
     ) -> c_int;
 
-    pub fn getgrouplist(
-        name: *const c_char,
-        basegid: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    name: *const c_char,
+    //    basegid: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn initgroups(name: *const c_char, basegid: crate::gid_t) -> c_int;
     pub fn getdomainname(name: *mut c_char, len: size_t) -> c_int;
     pub fn setdomainname(name: *const c_char, len: size_t) -> c_int;

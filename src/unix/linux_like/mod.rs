@@ -2029,8 +2029,8 @@ extern "C" {
     ) -> c_int;
     #[cfg(not(target_os = "l4re"))]
     pub fn fexecve(fd: c_int, argv: *const *mut c_char, envp: *const *mut c_char) -> c_int;
-    #[cfg(not(target_os = "l4re"))]
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //#[cfg(not(target_os = "l4re"))]
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     #[cfg(not(target_os = "l4re"))]
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
     pub fn bind(

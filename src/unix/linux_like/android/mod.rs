@@ -3610,12 +3610,12 @@ extern "C" {
     ) -> c_int;
     pub fn sigwait(set: *const sigset_t, sig: *mut c_int) -> c_int;
     pub fn getgrgid(gid: crate::gid_t) -> *mut crate::group;
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn initgroups(user: *const c_char, group: crate::gid_t) -> c_int;
     pub fn popen(command: *const c_char, mode: *const c_char) -> *mut crate::FILE;
     pub fn faccessat(dirfd: c_int, pathname: *const c_char, mode: c_int, flags: c_int) -> c_int;

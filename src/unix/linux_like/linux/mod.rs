@@ -4257,12 +4257,12 @@ extern "C" {
     pub fn sendfile(out_fd: c_int, in_fd: c_int, offset: *mut off_t, count: size_t) -> ssize_t;
     pub fn sigaltstack(ss: *const stack_t, oss: *mut stack_t) -> c_int;
     pub fn getdtablesize() -> c_int;
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn posix_spawn(
         pid: *mut crate::pid_t,
         path: *const c_char,

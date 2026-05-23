@@ -1519,12 +1519,12 @@ extern "C" {
         buflen: size_t,
         result: *mut *mut crate::passwd,
     ) -> c_int;
-    pub fn getgrouplist(
-        name: *const c_char,
-        basegid: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    name: *const c_char,
+    //    basegid: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn getnameinfo(
         sa: *const crate::sockaddr,
         salen: crate::socklen_t,

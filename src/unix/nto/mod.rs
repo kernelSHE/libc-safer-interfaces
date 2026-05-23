@@ -2890,12 +2890,12 @@ extern "C" {
         child: Option<unsafe extern "C" fn()>,
     ) -> c_int;
     pub fn getgrgid(gid: crate::gid_t) -> *mut crate::group;
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
     pub fn pthread_mutexattr_getpshared(
         attr: *const pthread_mutexattr_t,
         pshared: *mut c_int,

@@ -52,6 +52,13 @@ pub use unsetenv::unsetenv;
 //memcmp
 pub mod memcmp;
 pub use memcmp::memcmp;
+//getifaddrs
+pub mod getifaddrs;
+pub use getifaddrs::getifaddrs;
+//getgrouplist
+pub mod getgrouplist;
+pub use getgrouplist::getgrouplist;
+
 
 cfg_if! {
     if #[cfg(feature = "rustc-dep-of-std")] {

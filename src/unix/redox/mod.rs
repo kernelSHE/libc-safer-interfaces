@@ -1241,12 +1241,12 @@ extern "C" {
         buflen: size_t,
         result: *mut *mut crate::group,
     ) -> c_int;
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
 
     // malloc.h
     pub fn memalign(align: size_t, size: size_t) -> *mut c_void;

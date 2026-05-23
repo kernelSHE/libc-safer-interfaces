@@ -3675,7 +3675,7 @@ extern "C" {
         flags: c_int,
     ) -> c_int;
 
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
 
     pub fn uname(buf: *mut crate::utsname) -> c_int;
@@ -3820,12 +3820,12 @@ extern "C" {
         result: *mut *mut crate::group,
     ) -> c_int;
 
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    //) -> c_int;
 
     pub fn setgroups(ngroups: size_t, ptr: *const crate::gid_t) -> c_int;
 

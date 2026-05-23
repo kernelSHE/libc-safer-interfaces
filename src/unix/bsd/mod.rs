@@ -574,7 +574,7 @@ extern "C" {
     )]
     pub fn srand(seed: c_uint);
 
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
     pub fn setgroups(ngroups: c_int, ptr: *const crate::gid_t) -> c_int;
     pub fn setlogin(name: *const c_char) -> c_int;

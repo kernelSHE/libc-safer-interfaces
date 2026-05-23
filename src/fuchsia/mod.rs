@@ -3839,7 +3839,7 @@ extern "C" {
     pub fn if_nameindex() -> *mut if_nameindex;
     pub fn if_freenameindex(ptr: *mut if_nameindex);
     pub fn sync_file_range(fd: c_int, offset: off64_t, nbytes: off64_t, flags: c_uint) -> c_int;
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
     pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
 
     pub fn glob(
@@ -4026,12 +4026,12 @@ extern "C" {
     pub fn endgrent();
     pub fn getgrent() -> *mut crate::group;
 
-    pub fn getgrouplist(
-        user: *const c_char,
-        group: crate::gid_t,
-        groups: *mut crate::gid_t,
-        ngroups: *mut c_int,
-    ) -> c_int;
+    //pub fn getgrouplist(
+    //    user: *const c_char,
+    //    group: crate::gid_t,
+    //    groups: *mut crate::gid_t,
+    //    ngroups: *mut c_int,
+    // -> c_int;
     pub fn popen(command: *const c_char, mode: *const c_char) -> *mut crate::FILE;
     pub fn faccessat(dirfd: c_int, pathname: *const c_char, mode: c_int, flags: c_int) -> c_int;
     pub fn pthread_create(
