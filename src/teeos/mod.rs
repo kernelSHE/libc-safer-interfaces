@@ -970,7 +970,7 @@ pub const PTHREAD_MUTEX_ROBUST: c_int = 1;
 
 extern "C" {
     // ---- ALLOC -----------------------------------------------------------------------------
-    pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
+    //pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
 
     pub fn malloc(size: size_t) -> *mut c_void;
 

@@ -56,8 +56,12 @@ pub use memcmp::memcmp;
 pub mod getifaddrs;
 pub use getifaddrs::getifaddrs;
 //getgrouplist
+#[cfg(unix)]
 pub mod getgrouplist;
+#[cfg(unix)]
 pub use getgrouplist::getgrouplist;
+//calloc
+pub mod calloc;
 
 
 cfg_if! {

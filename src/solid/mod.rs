@@ -532,7 +532,7 @@ extern "C" {
         arg4: size_t,
         arg5: Option<unsafe extern "C" fn(arg1: *const c_void, arg2: *const c_void) -> c_int>,
     ) -> *mut c_void;
-    pub fn calloc(arg1: size_t, arg2: size_t) -> *mut c_void;
+    //pub fn calloc(arg1: size_t, arg2: size_t) -> *mut c_void;
     pub fn div(arg1: c_int, arg2: c_int) -> div_t;
     pub fn exit(arg1: c_int) -> !;
     pub fn free(arg1: *mut c_void);

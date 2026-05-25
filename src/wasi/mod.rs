@@ -658,7 +658,7 @@ extern "C" {
     pub fn _exit(code: c_int) -> !;
     pub fn abort() -> !;
     pub fn aligned_alloc(a: size_t, b: size_t) -> *mut c_void;
-    pub fn calloc(amt: size_t, amt2: size_t) -> *mut c_void;
+    //pub fn calloc(amt: size_t, amt2: size_t) -> *mut c_void;
     pub fn exit(code: c_int) -> !;
     pub fn free(ptr: *mut c_void);
     pub fn getenv(s: *const c_char) -> *mut c_char;

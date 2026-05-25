@@ -340,7 +340,7 @@ extern "C" {
     pub fn strtoll(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_longlong;
     pub fn strtoul(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulong;
     pub fn strtoull(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulonglong;
-    pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
+    //pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
     pub fn malloc(size: size_t) -> *mut c_void;
     pub fn _msize(p: *mut c_void) -> size_t;
     pub fn realloc(p: *mut c_void, size: size_t) -> *mut c_void;
