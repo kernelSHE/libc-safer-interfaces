@@ -2454,9 +2454,9 @@ cfg_if! {
     }
 }
 
-extern "C" {
-    pub fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int;
-}
+//extern "C" {
+//    pub fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int;
+//}
 
 cfg_if! {
     if #[cfg(target_env = "newlib")] {

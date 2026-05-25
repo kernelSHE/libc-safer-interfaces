@@ -62,7 +62,11 @@ pub mod getgrouplist;
 pub use getgrouplist::getgrouplist;
 //calloc
 pub mod calloc;
-
+//fnmatch
+#[cfg(unix)]
+pub mod fnmatch;
+#[cfg(unix)]
+pub use fnmatch::fnmatch;
 
 cfg_if! {
     if #[cfg(feature = "rustc-dep-of-std")] {

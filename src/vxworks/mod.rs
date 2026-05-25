@@ -1744,7 +1744,7 @@ extern "C" {
     pub fn tcgetattr(fd: c_int, termios: *mut crate::termios) -> c_int;
     pub fn tcsendbreak(fd: c_int, duration: c_int) -> c_int;
     pub fn confstr(name: c_int, buf: *mut c_char, len: size_t) -> size_t;
-    pub fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int;
+    //pub fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int;
 
     pub fn symlinkat(target: *const c_char, newdirfd: c_int, linkpath: *const c_char) -> c_int;
 
