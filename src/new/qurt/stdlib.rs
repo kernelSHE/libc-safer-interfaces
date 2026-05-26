@@ -13,7 +13,7 @@ pub const RAND_MAX: c_int = 32767;
 extern "C" {
     // Memory management
     pub fn malloc(size: size_t) -> *mut c_void;
-    pub fn calloc(nmemb: size_t, size: size_t) -> *mut c_void;
+    //pub fn calloc(nmemb: size_t, size: size_t) -> *mut c_void;
     pub fn realloc(ptr: *mut c_void, size: size_t) -> *mut c_void;
     pub fn free(ptr: *mut c_void);
 

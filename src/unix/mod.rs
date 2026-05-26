@@ -710,7 +710,7 @@ extern "C" {
     pub fn strtoul(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulong;
     pub fn strtoull(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulonglong;
     #[cfg_attr(target_os = "aix", link_name = "vec_calloc")]
-    pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
+    //pub fn calloc(nobj: size_t, size: size_t) -> *mut c_void;
     #[cfg_attr(target_os = "aix", link_name = "vec_malloc")]
     pub fn malloc(size: size_t) -> *mut c_void;
     pub fn realloc(p: *mut c_void, size: size_t) -> *mut c_void;

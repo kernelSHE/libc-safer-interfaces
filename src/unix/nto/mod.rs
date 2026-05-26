@@ -2669,8 +2669,8 @@ extern "C" {
         envp: *const *mut c_char,
     ) -> c_int;
 
-    pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
-    pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
+    //pub fn getifaddrs(ifap: *mut *mut crate::ifaddrs) -> c_int;
+    //pub fn freeifaddrs(ifa: *mut crate::ifaddrs);
     pub fn bind(
         socket: c_int,
         address: *const crate::sockaddr,

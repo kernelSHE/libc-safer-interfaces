@@ -1,0 +1,52 @@
+{
+  "total": 1000,
+  "passed": 1000,
+  "failed": 0,
+  "known_limitations": 0,
+  "effective_pass_rate": 1.0,
+  "final_verdict": "consistent",
+  "per_function_stats": {
+    "fnmatch": {
+      "total": 1000,
+      "passed": 1000,
+      "failed": 0,
+      "known_limitations": 0
+    }
+  },
+  "per_category_stats": {
+    "normal": {
+      "total": 950,
+      "passed": 950,
+      "failed": 0,
+      "rate": 1.0
+    },
+    "boundary": {
+      "total": 50,
+      "passed": 50,
+      "failed": 0,
+      "rate": 1.0
+    }
+  },
+  "failure_categories": {},
+  "failed_tests": [],
+  "layer3_coverage": {
+    "fnmatch": {
+      "total_cases": 1000,
+      "executed": 1000,
+      "passed": 1000,
+      "failed": 0,
+      "from_encodings_tested": 0,
+      "to_encodings_tested": 0,
+      "categories_covered": [],
+      "error_paths_tested": 0,
+      "coverage_score": 1.0,
+      "suggestions": [
+        "Missing source encodings (tested 0/20)",
+        "Missing target encodings (tested 0/20)",
+        "No boundary value tests",
+        "No edge case tests",
+        "No error path tests executed"
+      ]
+    }
+  }
+}
